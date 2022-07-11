@@ -1,1 +1,1 @@
-Waiting for updating
+Wait for updating
