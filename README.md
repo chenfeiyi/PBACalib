@@ -81,5 +81,6 @@
   The extrinsics and projection result will show automatically when finished.
 
 ### TODO
+- Wait for updating the collection tools and the collected data.
 - Please feel free to report issue
 
