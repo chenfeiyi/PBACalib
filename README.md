@@ -80,6 +80,10 @@
   ```
   The extrinsics and projection result will show automatically when finished.
 
+### Data
+
+- simulation environment: based on gazebo, we published on this [repo](https://github.com/chenfeiyi/LivoxCamSimu)
+
 ### TODO
 - Wait for updating the collection tools and the collected data.
 - Please feel free to report issue
