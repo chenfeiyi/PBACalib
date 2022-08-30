@@ -64,9 +64,3 @@ add_executable(liv_map_cam_recorder src/liv_map_cam_recorder.cc)
 target_link_libraries(liv_map_cam_recorder
   ${catkin_LIBRARIES}
 )
-#------------rotm2eul-----------------
-add_executable(rotm2eul src/rotm2eul.cc)
-
-target_link_libraries(rotm2eul
-  ${catkin_LIBRARIES}
-)
