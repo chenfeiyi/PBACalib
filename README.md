@@ -5,13 +5,13 @@
 <!-- - This is the original work on livox-camera extrinsic calibration. The corresponding paper is " PBACalib: Target-less Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment". -->
 - This work is implemented by Matlab.
 
-![image](figures/overview.png)
+![image](matlab/figures/overview.png)
 
 ### Data Preparation
 - Calibration Scene
   - First find a calibration scene, which is a plane with arbitrary texture. The calibration accuracy performs better when 1) texture is rich 2) the plane is strictly flat 3) the background is clean.
   - The example scenes are shown as follows  
-     ![image](figures/cali_scene.png)
+     ![image](matlab/figures/cali_scene.png)
   
 - Collection tools
   - We supply tools to collect images and point could. For our sensors operate in ROS
@@ -22,7 +22,7 @@
       rosrun livox_cam_tools liv_map_cam_recorder
     ```
     It will print help notes to tell you what parameters you need to specify, as follows
-    ![image](figures/helpnotes.png)
+    ![image](matlab/figures/helpnotes.png)
 - Undistorted images
   Run matlab file **undist_imgs.m** to undistort all images. Please change the intrinsic, distortion matrix and data file path.
 - Default data structure 
