@@ -1,6 +1,6 @@
 function  img_out = f_pro_livox2cam_i(pts_in,img,K,T,intensity)
 % [clus_idx,C]=f_kmeans(intensity,7);
-clus_idx = ceil(intensity/max(intensity)*10);
+clus_idx = ceil(intensity/max(intensity)*15);
 map = [ 0.8500    0.3250    0.0980
     0.49    0.1840    0.5560
     0.9290    0.6940    0.1250

@@ -1,5 +1,6 @@
 function detect_info_o = f_dataPreprocess(images,points3D,pcds_raw,scale,Tl2c,K)
 detect_info = {};
+detect_info_o=[];
 num=1;
 proerrs = [];
 proerrs_all = [];
@@ -10,6 +11,10 @@ for idx=1:images.Count-1
     %find pixel on the plane in idx-th image 
     [pxs1_o,pxs2_o,pts_o]=f_getPairedPxPt3D(images,points3D,id,id);
     [plane_cor,p_cov]= f_findPlaneWithpx(pxs1_o,pc_pts,Tl2c,K);
+    if isempty(plane_cor)
+        detect_info_o=[];
+        return;
+    end
     % the calculation of plane covariance is so time consuming
     for idx2=idx+1:images.Count
         id2 = img_keys{idx2};

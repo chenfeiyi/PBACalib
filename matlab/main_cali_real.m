@@ -1,12 +1,15 @@
+%%% This file is for the extrinsic calibration in real world.
+% Use this file to run your calibration
+
 clc;
 clear;
 addpath("colmap/");
 addpath("utils/plane_ransac/");
 addpath("utils/");
 addpath("visualize/");
-addpath("LM_OptmAll_solver/jocbian/");
-addpath("LM_OptmAll_solver/obj/");
-addpath("LM_OptmAll_solver/");
+addpath("LM_solver/jocbian/");
+addpath("LM_solver/obj/");
+addpath("LM_solver/");
 %% load parameters
 % 897.4566,896.7992,635.4040,375.3149
 K = [897.4566,0,635.4040;
@@ -14,14 +17,14 @@ K = [897.4566,0,635.4040;
     0,0,1];
 D = [-0.4398 0.2329 -0.0011 2.0984e-04 -0.0730];
 
-TInit = [0.0324   -0.9994    0.0130   0.0
-    0.0215   -0.0123   -0.9997    0.0
-    0.9992    0.0327    0.0211   0
-    0         0         0    1.0000];
+TInit = [0   -1    0   0.0
+         0    0   -1   0.0
+         1    0    0   0.0
+         0    0    0   1.0];
 %% load image and point cloud data
-data_path = "/home/cfy/Documents/livoxBACali/data/real/scene3/";
+data_path = "/home/cfy/Documents/livoxBACali/data/seq10/";
 pcd_folder = fullfile(data_path,"pcd");
-img_folder = fullfile(data_path,"img_un");
+img_folder = fullfile(data_path,"img");
 disp("***************load images and pcds*************");
 [img_list,imgs_raw] = f_load_data(img_folder,'img');
 [pcd_list,pcds_raw] = f_load_data(pcd_folder,'pcd');
@@ -36,6 +39,7 @@ disp("***************Camera Pose Optimization*************");
 img_keys = keys(images);
 [~,pts3d] = f_getPxPoints3D(images,points3D,img_keys{1});
 [p_model,inliers] = f_plane_ransac(pts3d,0.05);
+
 detect_info = f_dataPreprocess2(images,points3D,K,p_model);
 
 [cam_pose_o]=f_optm_MLE_cam(detect_info,images,K,true);
@@ -51,7 +55,8 @@ end
 disp("***************Initialize transformation *************");
 
 [T1,scale,conf,lambda_min]= f_initT_withPlane(images,points3D,pcds_raw,TInit,K);
-if conf<4e-4 && lambda_min<4e-3 
+% please comment this following "if" if you think your data is good enough.
+if conf<4e-5 && lambda_min<4e-3 
     disp("The distribution of the input data is not good");
     return;
 end
@@ -65,19 +70,26 @@ detect_info = f_dataPreprocess(images,points3D,pcds_raw,scale,T1,K);
 disp("start calibration");
 [T3,~]=f_optm_MLE_with_cam(detect_info,images,T1,K,double(scale),true);
 disp("The final transformation from lidar to camera is:");
-disp(T3);
+disp(T3);  
 disp("***************Visualize*************");
 pc_name = pcd_folder + "/" +pcd_list(1,:);
 pc_raw = pcread(pc_name);
-pts_in={};
-pc_raw2 = pcdownsample(pc_raw,"gridAverage",0.05);
+
 figure;
 title("Optimal T");
 hold on;
 % project points using intensity information
-img_pro = f_pro_livox2cam_i(pc_raw.Location()',imgs_raw{1},K,T3,pc_raw.Intensity');
+img_pro = f_pro_livox2cam_i(pc_raw.Location()',imgs_raw{2},K,T3,pc_raw.Intensity');
 imshow(img_pro);
-% project points using depth information
-% img_pro = f_pt_project_depth2image(T3,K,pc_raw2.Location()',imgs_raw{1});
-% imshow(img_pro);
 
+%% visualize the point cloud using plane information 
+% pc_raw2 = pcdownsample(pc_raw,"gridAverage",0.005);
+% pc_array = pc_raw2.Location()';
+% pts_in={};
+% for idx=1:5
+%     [model,inlier]=f_plane_ransac(pc_array,0.02);
+%     pts_in{idx} = pc_array(:,inlier);
+%     pc_array= pc_array(:,~inlier);  
+% end
+% img_pro = f_pro_livox2cam(pts_in,imgs_raw{2},K,T3);
+% imshow(img_pro);

@@ -10,6 +10,10 @@ for idx=1:size(pt_val,2)
 end
 
 [model,inlier] = f_plane_ransac(pts,0.05);
+% plot3(pts(1,inlier),pts(2,inlier),pts(3,inlier),'.r');
+% hold on;
+% plot3(pts(1,~inlier),pts(2,~inlier),pts(3,~inlier),'.b');
+% axis equal;
 pts_keys = keys(points3D);
 for idx=1:points3D.Count
     x = points3D(pts_keys{idx});

@@ -5,6 +5,11 @@ pts1 = pts_l_i(:,idx);
 idx_valid = find(dist<5);
 pts2 = pts1(:,idx_valid);
 [p_model,inliers] = f_plane_ransac(pts2,0.06);
+if size(inliers,1)<6
+    p_cov=[];
+    p_model_o=[];
+    return;
+end
 dists = p_model(1:3,1)'*(pts_l_i-p_model(4:6,1));
 dists = abs(dists);
 idxs = find(dists<0.06);

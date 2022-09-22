@@ -11,11 +11,8 @@ pts3d =[];
 for idx=1:points3D.Count
     pts3d = [pts3d,pts_val{idx}.xyz];
 end
-[p_model_cam0,inliers]=f_plane_ransac(pts3d,0.02);
+[p_model_cam0,inliers]=f_plane_ransac(pts3d,0.04);
 img_key = keys(images);
-% figure;
-% pcd_array = [];
-% pcd_int = [];
 for idx=1:size(images,1)
     R = images(img_key{idx}).R;
     t = images(img_key{idx}).t;
@@ -31,18 +28,16 @@ for idx=1:size(images,1)
     sub_pcd1 = sub_pcd1(:,find(abs(dist)<10));
     [p_model,inliers]=f_plane_ransac(sub_pcd1,0.03);
     sub_pcd1 = sub_pcd1(:,inliers);
+    if size(sub_pcd1,2)<5
+        confidence=0;
+        lambda_min=0;
+        return;
+    end
     dist  = p_model(1:3)'*(pts_from_pcd-p_model(4:6));
     inliers = find(abs(dist)<0.06);
     sub_pcd = pts_from_pcd(:,inliers);
     [p_model,inliers]=f_plane_ransac(sub_pcd,0.01);
     pts_mov=[pts_mov,p_model(:,1)];
-% 
-%     plot3(sub_pcd(1,inliers),sub_pcd(2,inliers),sub_pcd(3,inliers),'.');
-%     pcd_array = [pcd_array,sub_pcd(:,inliers)];
-%     pcd_int = [pcd_int;idx*ones([size(sub_pcd(:,inliers),2),1])];
-%     hold on;
-% %     plot3(sub_pcd(1,~inliers),sub_pcd(2,~inliers),sub_pcd(3,~inliers),'ob');
-%     axis equal;
 end
 T_o(1:3,1:3) = f_RotationSVDSolver(pts_ref(1:3,:),pts_mov(1:3,:));
 R = T_o(1:3,1:3);

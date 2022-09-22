@@ -3,9 +3,10 @@
   ### Description
 
 <!-- - This is the original work on livox-camera extrinsic calibration. The corresponding paper is " PBACalib: Target-less Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment". -->
+
 - This work is implemented by Matlab.
 
-![image](matlab/figures/overview.png)
+<img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=left />
 
 ### Data Preparation
 - Calibration Scene
@@ -27,31 +28,31 @@
   Run matlab file **undist_imgs.m** to undistort all images. Please change the intrinsic, distortion matrix and data file path.
 - Default data structure 
   ```
-  data/img/1.png raw images
-  data/img/2.png raw images 
+  data/img/1.png (raw images)
+  data/img/2.png (raw images) 
   ...
   ----------------------------
-  data/img_un/1.png undistorted images
-  data/img_un/2.png undistorted images 
+  data/img_un/1.png (undistorted images)
+  data/img_un/2.png (undistorted images) 
   ...
   ----------------------------
-  data/pcd/1.pcd raw pcds
-  data/pcd/2.pcd raw pcds
+  data/pcd/1.pcd (raw pcds)
+  data/pcd/2.pcd (raw pcds)
   
   ```
 ### Estimate camera poses using structure from motion
  We use [colmap](https://github.com/colmap/colmap/releases) to conduct SfM and export model files as txt into folder "models". Then the default data structure is shown as follows
  ```
-  data/img/1.png raw images
-  data/img/2.png raw images 
+  data/img/1.png (raw images)
+  data/img/2.png (raw images) 
   ...
 --------------------------
-  data/img_un/1.png undistorted images
-  data/img_un/2.png undistorted images 
+  data/img_un/1.png (undistorted images)
+  data/img_un/2.png (undistorted images) 
   ...
 --------------------------
-  data/pcd/1.pcd raw pcds
-  data/pcd/2.pcd raw pcds
+  data/pcd/1.pcd (raw pcds)
+  data/pcd/2.pcd (raw pcds)
   ...
 --------------------------
   models/cameras.txt

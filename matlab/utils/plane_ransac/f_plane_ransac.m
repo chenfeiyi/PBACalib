@@ -1,12 +1,17 @@
 function [model,inlinerIdx,varargout] = f_plane_ransac(pts_in,max_dis)
   sampleSize = 5;
+  if size(pts_in,2)<sampleSize+1
+      model=[];
+      inlinerIdx=[];
+      return;
+  end
   maxDistance = max_dis;
   fitFcn = @(pts) f_PlaneFitIn3D(pts);
   distFcn = @(model,pts) f_Plane3dVal(model,pts);
   [n_d,inlinerIdx] = ransac(pts_in',fitFcn,distFcn,sampleSize,maxDistance);
   pts_inler = pts_in(:,inlinerIdx);
   bar_p = mean(pts_inler,2);
-  S = (pts_inler-bar_p)*(pts_inler-bar_p)';
+  S = (pts_inler-bar_p)*(pts_inler-bar_p)'/size(pts_inler,2);
   [U,Lambda] = eig(S);
   [U,Lambda]=sortDescend(double(U),double(Lambda));
   n =U(:,3);
