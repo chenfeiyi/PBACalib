@@ -5,9 +5,9 @@
 <!-- - This is the original work on livox-camera extrinsic calibration. The corresponding paper is " PBACalib: Target-less Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment". -->
 
 - This work is implemented by Matlab.
-
+<br>
 <img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=left />
-
+</br>
 ### Data Preparation
 - Calibration Scene
   - First find a calibration scene, which is a plane with arbitrary texture. The calibration accuracy performs better when 1) texture is rich 2) the plane is strictly flat 3) the background is clean.
