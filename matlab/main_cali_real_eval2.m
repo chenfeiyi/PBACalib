@@ -1,6 +1,5 @@
-%%%This main file for the experiment of success rate
-
-
+%%%This main file for the experiment of success 
+%  rate by giving different initial parameters
 
 clc;
 clear;
