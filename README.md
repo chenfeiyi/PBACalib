@@ -2,7 +2,7 @@
 
   ### Description
 
-<!-- - This is the original work on livox-camera extrinsic calibration. The corresponding paper is " PBACalib: Target-less Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment". -->
+- This is the original work on livox-camera extrinsic calibration. The corresponding paper is " Feiyi. Chen, Liang. Li, Shuyang. Zhang, Jin. Wu and Lujia. Wang, "[PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment," in IEEE Robotics and Automation Letters, 2022, doi: 10.1109/LRA.2022.3226026.](https://ieeexplore.ieee.org/document/9968080)".
 
 - This work is implemented by Matlab.
 <img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=center />
