@@ -2,12 +2,23 @@
 
   ### Description
 
-- This is the original work on livox-camera extrinsic calibration. The corresponding paper is " Feiyi. Chen, Liang. Li, Shuyang. Zhang, Jin. Wu and Lujia. Wang, "[PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment," in IEEE Robotics and Automation Letters, 2022, doi: 10.1109/LRA.2022.3226026.](https://ieeexplore.ieee.org/document/9968080)".
-
+- This is the original work on livox-camera extrinsic calibration. The corresponding paper is " Feiyi. Chen, Liang. Li, Shuyang. Zhang, Jin. Wu and Lujia. Wang, "[PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment," in IEEE Robotics and Automation Letters, 2022, doi: 10.1109/LRA.2022.3226026.](https://ieeexplore.ieee.org/abstract/document/9968080/)".
 - This work is implemented by Matlab.
 <img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=center />
 
+### Porject structure
+
+**├─matlab**                  The code to perform calibration
+**│  ├─colmap**              Related tools to process the data exported from colamp
+**│  ├─LM_solver** 
+**│  │  ├─jocbian**
+**│  │  └─obj **
+**│  └─utils ** 
+**├─ros_ws **                  The related cpp code to collect the data for the calibration
+**└─shell **                      Shell scripts to perform SFM, which will call the exec files in colmap
+
 ### Data Preparation
+
 - Calibration Scene
   - First find a calibration scene, which is a plane with arbitrary texture. The calibration accuracy performs better when 1) texture is rich 2) the plane is strictly flat 3) the background is clean.
   - The example scenes are shown as follows  
@@ -83,6 +94,24 @@
 ### Data
 
 - simulation environment: based on gazebo, we published on this [repo](https://github.com/chenfeiyi/LivoxCamSimu)
+
+
+
+If you use this project for your research, please cite:
+
+```
+@ARTICLE{chen2022pbacalib,
+  author={Chen, Feiyi and Li, Liang and Zhang, Shuyang and Wu, Jin and Wang, Lujia},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment}, 
+  year={2023},
+  volume={8},
+  number={1},
+  pages={304-311},
+  doi={10.1109/LRA.2022.3226026}}
+```
+
+
 
 ### TODO
 - Wait for updating the collection tools and the collected data.
