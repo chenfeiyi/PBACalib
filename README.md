@@ -2,20 +2,20 @@
 
   ### Description
 
-- This is the original work on livox-camera extrinsic calibration. The corresponding paper is " Feiyi. Chen, Liang. Li, Shuyang. Zhang, Jin. Wu and Lujia. Wang, "[PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment," in IEEE Robotics and Automation Letters, 2022, doi: 10.1109/LRA.2022.3226026.](https://ieeexplore.ieee.org/abstract/document/9968080/)".
+- This is the original work on livox-camera extrinsic calibration. The corresponding paper is " Feiyi. Chen, Liang. Li, Shuyang. Zhang, Jin. Wu and Lujia. Wang, "[PBACalib: Targetless Extrinsic Calibration for High-Resolution LiDAR-Camera System Based on Plane-Constrained Bundle Adjustment," in IEEE Robotics and Automation Letters, 2022.](https://ieeexplore.ieee.org/abstract/document/9968080/)".
 - This work is implemented by Matlab.
 <img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=center />
 
 ### Project structure
 
-**├─matlab**                  The code to perform calibration  
-**│  ├─colmap**              Related tools to process the data exported from colamp  
-**│  ├─LM_solver**   
-**│  │  ├─jocbian ** 
-**│  │  └─obj  ** 
-**│  └─utils **   
-**├─ros_ws **                  The related cpp code to collect the data for the calibration  
-**└─shell **                      Shell scripts to perform SFM, which will call the exec files in colmap   
+**├─matlab**                &emsp;&emsp;  The code to perform calibration  
+**│  ├─colmap**              &emsp; Related tools to process the data exported from colamp  
+**│  ├─LM_solver   
+│  │  ├─jocbian  
+│  │  └─obj   
+│  └─utils   
+├─ros_ws**                &emsp;&emsp;   The related cpp code to collect the data for the calibration  
+**└─shell**                &emsp;&emsp;&emsp;      Shell scripts to perform SFM, which will call the exec files in colmap   
 
 ### Data Preparation
 
