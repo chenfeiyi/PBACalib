@@ -6,16 +6,16 @@
 - This work is implemented by Matlab.
 <img src="matlab/figures/overview.png" width = "60%" alt="Overview" align=center />
 
-### Porject structure
+### Project structure
 
-**├─matlab**                  The code to perform calibration
-**│  ├─colmap**              Related tools to process the data exported from colamp
-**│  ├─LM_solver** 
-**│  │  ├─jocbian**
-**│  │  └─obj **
-**│  └─utils ** 
-**├─ros_ws **                  The related cpp code to collect the data for the calibration
-**└─shell **                      Shell scripts to perform SFM, which will call the exec files in colmap
+**├─matlab**                  The code to perform calibration  
+**│  ├─colmap**              Related tools to process the data exported from colamp  
+**│  ├─LM_solver**   
+**│  │  ├─jocbian ** 
+**│  │  └─obj  ** 
+**│  └─utils **   
+**├─ros_ws **                  The related cpp code to collect the data for the calibration  
+**└─shell **                      Shell scripts to perform SFM, which will call the exec files in colmap   
 
 ### Data Preparation
 

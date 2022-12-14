@@ -1,3 +1,5 @@
 matlab/result
 *.asv
 *.mat
+result
+oldresult
