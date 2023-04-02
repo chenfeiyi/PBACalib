@@ -24,7 +24,7 @@ TInit = [0   -1    0   0.0
 %% load image and point cloud data
 data_path = "/home/cfy/Documents/livoxBACali/data/seq10/";
 pcd_folder = fullfile(data_path,"pcd");
-img_folder = fullfile(data_path,"img");
+img_folder = fullfile(data_path,"img_un");
 disp("***************load images and pcds*************");
 [img_list,imgs_raw] = f_load_data(img_folder,'img');
 [pcd_list,pcds_raw] = f_load_data(pcd_folder,'pcd');
@@ -79,7 +79,7 @@ figure;
 title("Optimal T");
 hold on;
 % project points using intensity information
-img_pro = f_pro_livox2cam_i(pc_raw.Location()',imgs_raw{2},K,T3,pc_raw.Intensity');
+img_pro = f_pro_livox2cam_i(pc_raw.Location()',imgs_raw{1},K,T3,pc_raw.Intensity');
 imshow(img_pro);
 
 %% visualize the point cloud using plane information 
